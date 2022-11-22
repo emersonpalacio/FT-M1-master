@@ -12,15 +12,24 @@ let suma = 0;
 for (let i = array.length-1; i >=0 ;i--) { 
 
     const element = array[i]
-    console.log(element);
+
     suma+= element*Math.pow(2,j)
      j++
 }
-console.log(suma);
+
 return suma;
 }
 
-function DecimalABinario(num) {}
+function DecimalABinario(num) {
+     if(num<=0) return "0"
+     let arr =[]
+     while(num>0){
+          arr.unshift(num%2)
+          num = Math.floor(num/2)
+
+     }
+     return arr.join("")
+}
 
 module.exports = {
    BinarioADecimal,
