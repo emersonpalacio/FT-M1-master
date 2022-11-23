@@ -85,22 +85,22 @@ console.log(pm); // franco ya que al trabajar con let el scope es de bloque por 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3"  // 2 , javascript interpreta que debido a que hay un numero y se está realizando una division convierte el tipo de dato tring en number para poder entregar el resultado 
+"2" * "3"  // 6 tanto la multiplicacion como la division tienen la particularidad de convertir el string en number para realizar la operacion 
+4 + 5 + "px"  //"9px" realiza primero la suma y concatena el string
+"$" + 4 + 5 //"$45" al ser el primer valor a sumar un string js convierte toda la operacion a string y concatena los alos
+"4" - 2  // 2 evalua 4string - 2 numer y hace la conversion de 4 a number para hacer la operacion de resta 
+"4px" - 2  //NaN , al ser el primer operando un numero unido a un string js no sabe si a que tipo de dato convertir el elemento dado 2 tipos
+7 / 0   // segun yo da error de js  perro al probarlos envio un mensaje "infinity" ni idea que es 
+{}[0]  // dio como resultado undefined , tampoco se por que 
+parseInt("09") //9 number convierte el string en numero
+5 && 2  //2   && tiende a falso
+2 && 5   //5
+5 || 0  // 5  or tiende a true
+0 || 5 // 5 
+[3]+[3]-[10]  // ni idea por que es 23
+3>2>1  // pensé que daba true, dío false
+[] == ![] //true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
