@@ -111,8 +111,8 @@ parseInt("09") //9 number convierte el string en numero
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); //undefined no se ha inicializado la variable en este momento, solo está siendo declarada
+   console.log(foo()); // retorna 2 ya que las funciones declaradas se cargan al incio del archivo
 
    var a = 1;
    function foo() {
@@ -137,6 +137,7 @@ function getFood(food) {
 }
 
 getFood(false);
+// regresa undefined ya que al pasar por parametro false a la funcion food, nunca se ejecuta el condicional if que es donde vive la variable snack con el valor de friskies, no regresa meoew mix, por que al ser una variable global no tiene acceso al entorno de la fucnion getfood
 ```
 
 ### This
@@ -155,9 +156,9 @@ var obj = {
    },
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); //muestra por consola aurelio de rosa por que el this hace referencia al objeto donde se declara el metodo
 
-var test = obj.prop.getFullname;
+var test = obj.prop.getFullname;  //al asignar el metodo getfullname a un variable se está cambiando hacia donde apunta this, por lo cual dice undefined
 
 console.log(test());
 ```
@@ -168,15 +169,17 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
+   console.log(1);  //(1) es el primer elemento del call stack se resuelve inmediatamente
    setTimeout(function () {
       console.log(2);
-   }, 1000);
+   }, 1000);      //         //estos dos set time out, al simular un asincronismo no son resueltos en el call stack sino que se envian al webApi, transcurrido el tiempo definido
+                              //en los set time out, primero entra log(2) demora 1 segundo , pero estar log(1)estipulado en 1 segundo este se resuelve mas rapido
+                              //por que los pasa al callback que primero para ser enviados por el event loop al call stack
    setTimeout(function () {
       console.log(3);
    }, 0);
-   console.log(4);
+   console.log(4);  // (2) al no estar simulando un asincronismo estos logs llegan al  call stack y se resuelven en el acto
 }
 
-printing();
+printing(); 
 ```
